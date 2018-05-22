@@ -1,0 +1,7 @@
+import "UnityEngine"
+
+-- main方法,入口函数
+function main()
+
+end
+
