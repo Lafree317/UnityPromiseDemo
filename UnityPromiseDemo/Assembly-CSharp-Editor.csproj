@@ -124,6 +124,12 @@
  <Reference Include="UnityEditor.WindowsStandalone.Extensions">
  <HintPath>E:/edit/Unity2017/Editor/Data/PlaybackEngines/windowsstandalonesupport/UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
  </Reference>
+ <Reference Include="BytesHelper">
+ <HintPath>D:/Code/Other/Unity/UnityPromiseDemo/UnityPromiseDemo/Assets/Plugins/Slua_Managed/BytesHelper.dll</HintPath>
+ </Reference>
+ <Reference Include="RSG.Promise">
+ <HintPath>D:/Code/Other/Unity/UnityPromiseDemo/UnityPromiseDemo/Assets/RSG.Promise.3.0.0/lib/net35/RSG.Promise.dll</HintPath>
+ </Reference>
  <Reference Include="UnityEngine.Advertisements">
  <HintPath>C:/ProgramData/Unity/cache/packages/packages.unity.com/com.unity.ads@2.0.3/UnityEngine.Advertisements.dll</HintPath>
  </Reference>
@@ -144,12 +150,6 @@
  </Reference>
  <Reference Include="UnityEngine.StandardEvents">
  <HintPath>C:/ProgramData/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.10/UnityEngine.StandardEvents.dll</HintPath>
- </Reference>
- <Reference Include="BytesHelper">
- <HintPath>D:/Code/Other/Unity/UnityPromiseDemo/UnityPromiseDemo/Assets/Plugins/Slua_Managed/BytesHelper.dll</HintPath>
- </Reference>
- <Reference Include="RSG.Promise">
- <HintPath>D:/Code/Other/Unity/UnityPromiseDemo/UnityPromiseDemo/Assets/RSG.Promise.3.0.0/lib/net35/RSG.Promise.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>

@@ -1,7 +1,25 @@
 import "UnityEngine"
-
+local Promise = require("LuaPromise")
 -- main方法,入口函数
 function main()
 
+end
+
+function StepOne()
+    local p = Promise.new()
+
+    return p
+end
+
+function StepTwo()
+    local p = Promise.new()
+    
+    return p
+end
+
+function StepThree()
+    local p = Promise.new()
+    
+    return p
 end
 
