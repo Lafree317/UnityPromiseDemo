@@ -38,6 +38,13 @@ public class CSharpPromise : MonoBehaviour {
             .Catch(error => print(error));
     }
 
+    public void CrashProtectFunc()
+    {
+        StepOne("abc")
+            .Then(value => CrashProtectFunc())
+            .Catch(error => print(error));
+    }
+
     IPromise<string> StepOne(string v)
     {
         var p = new Promise<string>();
@@ -59,11 +66,16 @@ public class CSharpPromise : MonoBehaviour {
         var p = new Promise<string>();
         print("StepThree");
 
-        //Exception e = new Exception("错误");
-        //p.Reject(e);
         p.Resolve(v + " 完成 \n");
         return p;
 	}
+
+    IPromise<string> CrashStep()
+    {
+        var p = new Promise<string>();
+
+        return p;
+    }
 
     private void SystemException(string v)
     {

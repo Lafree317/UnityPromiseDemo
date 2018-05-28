@@ -7,15 +7,9 @@ using SLua;
 
 public class LuaManager : MonoBehaviour {
 
-    private LuaFunction _luaStart = null;
-    private LuaFunction _luaUpdate = null;
-    private LuaFunction _luaLateUpdate = null;
-    private LuaFunction _luaFixedUpdate = null;
-    private LuaFunction _luaAwake = null;
-    private LuaFunction _luaOnDisable = null;
-    private LuaFunction _luaOnDestroy = null;
-
-
+    private LuaFunction _luaPromise = null;
+    private LuaFunction _luaPromiseAll = null;
+    private LuaFunction _luaPromiseCrash = null;
     private void Awake()
     {
         LuaSvr svr = new LuaSvr();// 如果不先进行某个LuaSvr的初始化的话,下面的mianState会爆一个为null的错误..
@@ -23,27 +17,34 @@ public class LuaManager : MonoBehaviour {
 		svr.init(null, () => // 如果不用init方法初始化的话,在Lua中是不能import的
 		{
             svr.start("Main");
-            _luaAwake = LuaSvr.mainState.getFunction("Awake");
-            _luaStart = LuaSvr.mainState.getFunction("Start");
-            _luaFixedUpdate = LuaSvr.mainState.getFunction("FixedUpdate");
-            _luaUpdate = LuaSvr.mainState.getFunction("Update");
-            _luaLateUpdate = LuaSvr.mainState.getFunction("LateUpdate");
-            _luaOnDisable = LuaSvr.mainState.getFunction("OnDisable");
-            _luaOnDestroy = LuaSvr.mainState.getFunction("OnDestroy");
+            _luaPromise = LuaSvr.mainState.getFunction("LuaPromise");
+            _luaPromiseAll = LuaSvr.mainState.getFunction("LuaPromiseAll");
+            _luaPromiseCrash = LuaSvr.mainState.getFunction("LuaPromiseCrash");
 		});
-        if(_luaAwake != null){
-            _luaAwake.call();
+    }
+    
+    public void LuaPromise()
+    {
+        if(_luaPromise != null)
+        {
+            _luaPromise.call(); 
+        }
+    }
+    public void LuaPromiseAll()
+    {
+        if(_luaPromiseAll != null)
+        {
+            _luaPromiseAll.call();
         }
     }
 
-	private void Start ()
+    public void LuaPromiseCrash()
     {
-
-        if(_luaStart != null)
+        if(_luaPromiseCrash != null)
         {
-            _luaStart.call();
+            _luaPromiseCrash.call();
         }
-	}
+    }
 
     // SLua Loader代理方法
     private static byte[] LuaReourcesFileLoader(string strFile)
@@ -53,39 +54,4 @@ public class LuaManager : MonoBehaviour {
         return File.ReadAllBytes(filename);
     }
 
-    void FixedUpdate()
-    {
-        if(_luaFixedUpdate != null)
-        {
-            _luaFixedUpdate.call();
-        }
-    }
-    void Update()
-    {
-        if(_luaUpdate != null)
-        {
-            _luaUpdate.call();
-        }
-    }
-    void LateUpdate()
-    {
-        if(_luaLateUpdate != null)
-        {
-            _luaLateUpdate.call();
-        }
-    }
-    void OnDisable()
-    {
-        if(_luaOnDisable != null)
-        {
-            _luaOnDisable.call();
-        }
-    }
-    void OnDestroy()
-    {
-        if(_luaOnDestroy == null)
-        {
-            _luaOnDestroy.call();
-        }
-    }
 }

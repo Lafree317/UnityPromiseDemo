@@ -5,21 +5,37 @@ function main()
 
 end
 
+function LuaPromise()
+    StepOne():next(function(value)
+        StepTwo()
+    end)
+end
+
+function LuaPromiseAll()
+    print("LuaPromiseAll")
+end
+
+function LuaPromiseCrash()
+    print("LuaPromiseCrash")
+end
+
+
+
 function StepOne()
     local p = Promise.new()
-
+    p:resovle("StepOne done")
     return p
 end
 
 function StepTwo()
     local p = Promise.new()
-    
+    p:resovle("StepTwo done")
     return p
 end
 
 function StepThree()
     local p = Promise.new()
-    
+    p:resovle("StepThree done")
     return p
 end
 
