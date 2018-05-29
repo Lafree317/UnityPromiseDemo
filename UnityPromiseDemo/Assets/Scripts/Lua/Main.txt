@@ -19,7 +19,15 @@ function LuaPromise()
 end
 
 function LuaPromiseAll()
-    print("LuaPromiseAll")
+    Promise.all({
+        StepOne("StepOne"),
+        StepTwo("StepTwo"),
+        StepThree("StepThree"),
+    }):next(function(results)
+        print(results,#results)
+    end,function(error)
+        print(error)
+    end)
 end
 
 function LuaPromiseCrash()
