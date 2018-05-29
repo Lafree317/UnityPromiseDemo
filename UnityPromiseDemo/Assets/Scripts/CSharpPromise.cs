@@ -4,6 +4,7 @@ using UnityEngine;
 using RSG;
 using System;
 
+
 public class CSharpPromise : MonoBehaviour {
 
 	// Use this for initialization

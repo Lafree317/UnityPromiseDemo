@@ -31,7 +31,14 @@ function LuaPromiseAll()
 end
 
 function LuaPromiseCrash()
-    print("LuaPromiseCrash")
+    StepOne("StepOne")
+    :next(function(value)
+        return CrashFunc()
+    end):next(function(value)
+        
+    end,function(err)
+        print(err)
+    end)
 end
 
 
@@ -61,3 +68,9 @@ function StepThree(value)
     return p
 end
 
+function CrashFunc()
+    local p = Promise.new()
+    local n = nil
+    p:resolve(n.Some())
+    return p
+end
