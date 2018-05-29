@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using RSG;
 using System;
-
+using System.Diagnostics;
 
 public class CSharpPromise : MonoBehaviour {
 
@@ -50,6 +50,10 @@ public class CSharpPromise : MonoBehaviour {
     {
         var p = new Promise<string>();
         print("StepOne");
+        var pro = Process.GetCurrentProcess();
+        var pros = Process.GetProcesses();
+        print(pro);
+        print(pros);
         p.Resolve(v+" 完成 \n");
         return p;
 	}

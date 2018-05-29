@@ -5,16 +5,18 @@ function main()
 
 end
 
+
+-- 如果不用promise可能要在每个函数执行完就判断一下返回值.
+-- 并且还要写在一个函数内
 function LuaPromise()
-    StepOne("StepOne")
-    :next(function(value)
+    StepOne("StepOne"):next(function(value)
         return StepTwo(value)
     end):next(function(value)
        return StepThree(value)
     end):next(function(value)
         print(value)
     end,function(err)
-        print(err)
+        print(err) 
     end)
 end
 
@@ -35,9 +37,9 @@ function LuaPromiseCrash()
     :next(function(value)
         return CrashFunc()
     end):next(function(value)
-        
+        print(value)
     end,function(err)
-        print(err)
+        print(err) -- 因为使用了pcall所以崩溃了也会返回字符串的崩溃信息
     end)
 end
 
