@@ -6,8 +6,15 @@ function main()
 end
 
 function LuaPromise()
-    StepOne():next(function(value)
-        StepTwo()
+    StepOne("StepOne")
+    :next(function(value)
+        return StepTwo(value)
+    end):next(function(value)
+       return StepThree(value)
+    end):next(function(value)
+        print(value)
+    end,function(err)
+        print(err)
     end)
 end
 
@@ -21,21 +28,28 @@ end
 
 
 
-function StepOne()
+function StepOne(value)
     local p = Promise.new()
-    p:resovle("StepOne done")
+    local v = value.." Done\n"
+    print(v)
+    p:resolve(v)
     return p
 end
 
-function StepTwo()
+function StepTwo(value)
     local p = Promise.new()
-    p:resovle("StepTwo done")
+    local v = value.." StepTwo Done\n"
+    print(v)
+    p:resolve(v)
+    -- p:reject("error")
     return p
 end
 
-function StepThree()
+function StepThree(value)
     local p = Promise.new()
-    p:resovle("StepThree done")
+    local v = value.." StepThree Done\n"
+    print(v)
+    p:resolve(v)
     return p
 end
 
